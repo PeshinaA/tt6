@@ -397,20 +397,17 @@ int main(int argc, char *argv[])
             cout << "Введите  дату" << endl;
             cin >> ciz_data_adding;
             ciz_information c(ciz_name_adding, ciz_data_adding);
-            mas_shop[count_ciz++] = c;
-            size_ciz=10;
             ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
-            *mas_ciz = new ciz_information[size_ciz];
-            count_ciz=0;
+            (*mas_shop)[count_ciz++] = c;
         }
         break;
         case 4:
         {
             ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
-            for (int i = 0; i < count_ciz; ++i)
+            for (int k = 0; k < count_ciz; ++k)
             {
-                cout << "СИЗ:" << i + 1 << endl;
-                cout << mas_ciz[i] << endl;
+                cout << "СИЗ:" << k + 1 << endl;
+                cout << mas_ciz[k] << endl;
             }
         }
         break;
