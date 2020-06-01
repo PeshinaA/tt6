@@ -407,7 +407,7 @@ int main(int argc, char *argv[])
         case 4:
         {
             ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
-            for (int i = 0; i < count_shop; ++i)
+            for (int i = 0; i < count_ciz; ++i)
             {
                 cout << "СИЗ:" << i + 1 << endl;
                 cout << mas_ciz[i] << endl;
