@@ -235,6 +235,8 @@ int main(int argc, char *argv[])
     string name_adding;
     string surname_adding;
     string middlename_adding;
+    string ciz_name_adding;
+    unsigned int ciz_data_adding;
     int i=0;
     int j=0;
     int k=0;
@@ -242,7 +244,7 @@ int main(int argc, char *argv[])
     int size_sotrudnik;
     int count_sotr;
     int count_shop;
-    int ciz_count;
+    int count_ciz;
     shop_information *mas_shop;
     string file_name;
     ifstream rf;
@@ -323,7 +325,7 @@ int main(int argc, char *argv[])
     mas_shop[i].setshop_count(i);
     count_shop = mas_shop[i].Getshop_count();
     mas_shop[i].setciz_count(k);
-    ciz_count = mas_shop[i].Getciz_count();
+    count_ciz = mas_shop[i].Getciz_count();
     rf.close();
     for (;;)
     {
@@ -389,10 +391,12 @@ int main(int argc, char *argv[])
         break;
         case 3:
         {
-            cout << "Введите  название цеха" << endl;
-            cin >> shopname_adding;
-            shop_information c(shopname_adding);
-            mas_shop[count_shop++] = c;
+            cout << "Введите  название СИЗ" << endl;
+            cin >> ciz_name_adding;
+            cout << "Введите  дату" << endl;
+            cin >> ciz_data_adding;
+            ciz_information c(ciz_name_adding, ciz_data_adding);
+            mas_shop[count_ciz++] = c;
             size_ciz=10;
             ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
             *mas_ciz = new ciz_information[size_ciz];
@@ -401,10 +405,11 @@ int main(int argc, char *argv[])
         break;
         case 4:
         {
+            ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
             for (int i = 0; i < count_shop; ++i)
             {
-                cout << "Shop #" << i + 1 << endl;
-                cout << mas_shop[i] << endl;
+                cout << "СИЗ:" << i + 1 << endl;
+                cout << mas_ciz[i] << endl;
             }
         }
         break;
