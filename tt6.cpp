@@ -93,7 +93,7 @@ istream &operator>>(istream &in, sotrudnik_information &obj)
 class shop_information
 {
 private:
-    int сiz_count;
+    int ciz_count;
     int shop_count;
     int sotrudnik_count;
     int mas_size;
@@ -177,6 +177,7 @@ shop_information::shop_information()
 {
 
     sotrudnik_count = 0;
+    ciz_count = 0;
     mas_size = 0;
     ciz_size = 0;
     sotrudnik_size = 0;
