@@ -93,6 +93,7 @@ istream &operator>>(istream &in, sotrudnik_information &obj)
 class shop_information
 {
 private:
+    int сiz_count;
     int shop_count;
     int sotrudnik_count;
     int mas_size;
@@ -118,6 +119,14 @@ public:
     void setsotrudnik_count(int tmp_sotrudnik_count)
     {
         sotrudnik_count = tmp_sotrudnik_count;
+    }
+    int Getciz_count()
+    {
+        return ciz_count;
+    }
+    void setciz_count(int tmp_ciz_count)
+    {
+        ciz_count = tmp_ciz_count;
     }
     int Getmas_size()
     {
@@ -233,6 +242,7 @@ int main(int argc, char *argv[])
     int size_sotrudnik;
     int count_sotr;
     int count_shop;
+    int ciz_count;
     shop_information *mas_shop;
     string file_name;
     ifstream rf;
@@ -312,6 +322,8 @@ int main(int argc, char *argv[])
     count_sotr = mas_shop[i].Getsotrudnik_count();
     mas_shop[i].setshop_count(i);
     count_shop = mas_shop[i].Getshop_count();
+    mas_shop[i].setciz_count(k);
+    ciz_count = mas_shop[i].Getciz_count();
     rf.close();
     for (;;)
     {
@@ -377,10 +389,23 @@ int main(int argc, char *argv[])
         break;
         case 3:
         {
+            cout << "Введите  название цеха" << endl;
+            cin >> shopname_adding;
+            shop_information c(shopname_adding);
+            mas_shop[count_shop++] = c;
+            size_ciz=10;
+            ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
+            *mas_ciz = new ciz_information[size_ciz];
+            count_ciz=0;
         }
         break;
         case 4:
         {
+            for (int i = 0; i < count_shop; ++i)
+            {
+                cout << "Shop #" << i + 1 << endl;
+                cout << mas_shop[i] << endl;
+            }
         }
         break;
         case 5:
