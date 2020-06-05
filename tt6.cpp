@@ -23,6 +23,10 @@ public:
     {
         return data;
     }
+    unsigned int &setciz_data(int tmp_data)
+    {
+        data = tmp_data;
+    }
     ciz_information(string c, unsigned int d);
     ciz_information();
     friend ostream &operator<<(ostream &out, const ciz_information &obj);
@@ -127,10 +131,6 @@ public:
     void setciz_count(int tmp_ciz_count)
     {
         ciz_count = tmp_ciz_count;
-    }
-    void setdata(int tmp_data)
-    {
-        data = tmp_data;
     }
     int Getmas_size()
     {
