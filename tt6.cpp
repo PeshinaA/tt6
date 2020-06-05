@@ -128,6 +128,10 @@ public:
     {
         ciz_count = tmp_ciz_count;
     }
+    void setdata(int tmp_data)
+    {
+        data = tmp_data;
+    }
     int Getmas_size()
     {
         return mas_size;
@@ -398,7 +402,7 @@ int main(int argc, char *argv[])
             cin >> ciz_data_adding;
             ciz_information c(ciz_name_adding, ciz_data_adding);
             ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
-            (*mas_shop)[count_ciz++] = c;
+            (*mas_ciz)[count_ciz++] = c;
         }
         break;
         case 4:
