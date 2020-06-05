@@ -23,9 +23,9 @@ public:
     {
         return data;
     }
-    unsigned int &setciz_data(int tmp_data)
+    unsigned int &setciz_data(int tmp_ciz_data)
     {
-        data = tmp_data;
+        ciz_data = tmp_ciz_data;
     }
     ciz_information(string c, unsigned int d);
     ciz_information();
@@ -245,6 +245,7 @@ int main(int argc, char *argv[])
     int i=0;
     int j=0;
     int k=0;
+    unsigned int ciz_data;
     int size_ciz;
     int size_sotrudnik;
     int count_sotr;
@@ -315,7 +316,9 @@ int main(int argc, char *argv[])
                     rf.read((char *)((*mas_sotrudnik)[j].Getsotrudnik_middlename().c_str()), size4);
                     for (int k = 0; k < size_ciz; k++)
                     {
-                        rf.read((char *)&(*mas_ciz)[k].Getciz_data(), sizeof(unsigned int));
+                        rf.read((char *)&ciz_data, sizeof(ciz_data));
+                        mas_ciz[k].setciz_data(ciz_data);
+          //              rf.read((char *)&(*mas_ciz)[k].Getciz_data(), sizeof(unsigned int));
                         size_t size5;
                         rf.read((char *)&size5, sizeof(size5));
                         (*mas_ciz)[k].Getciz_name().resize(size5);
