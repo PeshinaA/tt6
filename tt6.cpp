@@ -23,7 +23,7 @@ public:
     {
         return data;
     }
-    unsigned int &setciz_data(unsigned int tmp_data)
+    void setciz_data(unsigned int tmp_data)
     {
         data = tmp_data;
     }
@@ -316,8 +316,8 @@ int main(int argc, char *argv[])
                     rf.read((char *)((*mas_sotrudnik)[j].Getsotrudnik_middlename().c_str()), size4);
                     for (int k = 0; k < size_ciz; k++)
                     {
-                        rf.read((char *)&data, sizeof(data));
-                        mas_ciz[k].setciz_data(data);
+                        rf.read((char *)&ciz_data, sizeof(ciz_data));
+                        mas_ciz[k].setciz_data(ciz_data);
                         size_t size5;
                         rf.read((char *)&size5, sizeof(size5));
                         (*mas_ciz)[k].Getciz_name().resize(size5);
@@ -398,13 +398,35 @@ int main(int argc, char *argv[])
         break;
         case 3:
         {
-            cout << "Введите  название СИЗ" << endl;
-            cin >> ciz_name_adding;
-            cout << "Введите  дату" << endl;
-            cin >> ciz_data_adding;
-            ciz_information c(ciz_name_adding, ciz_data_adding);
-            ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
-            (*mas_ciz)[count_ciz++] = c;
+            int flag_name = 0;
+            cout << "Введите имя цеха" << endl;
+            cin >> poisk_shop_name;
+            for (int i = 0; i < size_shop; i++)
+            {
+                if (poisk_shop_name == mas_shop[i].Getshop_name())
+                {
+                    cout << "Введите  название СИЗ" << endl;
+                    cin >> ciz_name_adding;
+                    cout << "Введите  дату" << endl;
+                    cin >> ciz_data_adding;
+                    ciz_information c(ciz_name_adding, ciz_data_adding);
+                    flag_name = 1;
+                    ciz_information **mas_ciz = mas_shop[i].Getmas_ciz();
+                    if (mas_shop[i].Getmas_size() <= mas_shop[i].Getciz_count())
+                    {
+                        ciz_information *new_mas_ciz = new ciz_information[2 * size_ciz];
+                        copy_n(*mas_ciz, size_ciz, new_mas_ciz);
+                        delete[] * mas_ciz;
+                        *mas_ciz = new_mas_ciz;
+                        size_ciz *= 2;
+                    }
+                    (*mas_ciz)[count_ciz++] = c;
+                }
+            }
+            if (flag_name == 0)
+            {
+                cout << "Введенного цеха не существует" << endl;
+            }
         }
         break;
         case 4:
